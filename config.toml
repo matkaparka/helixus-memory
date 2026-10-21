@@ -1,0 +1,30 @@
+# Helixus 记忆服务配置。这里没有密钥：整理模型的 key 从 key_file 里按变量名读。
+
+[server]
+host = "127.0.0.1"
+port = 8790
+db = "data/memory.db"          # 相对这个目录
+
+[session]
+gap_minutes = 120              # 两条事件隔这么久算新的一场直播
+
+[context]
+max_viewers = 5                # 一批弹幕里最多带几个人的卡片
+max_facts = 4                  # 最多带几条「他说过的话」（另有置顶的最多 3 条）
+card_chars = 120               # 卡片最长多少字（超了切在句号处；提示词要求 80 字内）
+
+[consolidate]
+enabled = true
+interval_sec = 600             # 直播中每隔这么久整理一次……
+min_events = 6                 # ……攒够这么多条新记录才整理
+idle_flush_sec = 600           # 这么久没新记录（下播了）就把剩下的整理掉
+chunk_chars = 6000             # 每次交给模型的记录最多多少字
+
+[llm]
+# OpenAI 兼容接口。DeepSeek 国内直连，不走代理（和 trpg-table 的配置一致）
+base_url = "https://api.deepseek.com"
+model = "deepseek-chat"
+key_file = "E:/aivup/ob_vtt/trpg-table/.env"
+key_var = "DEEPSEEK_API_KEY"
+proxy = ""
+timeout_sec = 120

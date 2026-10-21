@@ -23,7 +23,10 @@
 start_memory.bat                 # http://127.0.0.1:8790
 ```
 
-- 弹幕桥：`bili_bridge/config.toml` 的 `[memory] enabled = true`（默认 false）
+- 默认生效：直播的几个启动脚本（`E:\aivup\start_live_window.bat`、`start_live_window_unity.bat`、`start_live_window_unity_table.bat`、
+  `start_live_window_warudo.bat`、`youtube&twitch\start-services.bat`，后者被 start-bilibili / twitch / youtube 调用）
+  看 8790 没在听就开一个 `memory` 窗口，和别的服务一样，直播时别关
+- 弹幕桥：默认报（`bili_bridge/config.toml` 的 `[memory] enabled = false` 关掉）
 - 页面：AITuberKit 分支 `helixus-memory`（`src/features/helixus/memory.ts`，`messageReceiver.tsx` 的 ai_generate 分支）。地址改 `NEXT_PUBLIC_HELIXUS_MEMORY_URL`
 - 服务没开：桥不记、页面不带记忆（最近对话照样附），都不影响说话；页面 30 秒内不会再问
 - 整理模型：`config.toml` 的 `[llm]`，key 从 `key_file` 按变量名读（默认用 trpg-table 的 DEEPSEEK_API_KEY）
